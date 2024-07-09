@@ -15,9 +15,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
     };
 }
 
-// Some comments to describe the root component
 export function Layout({ children }: { children: React.ReactNode }) {
-    const { session } = useLoaderData<typeof loader>();
+    const { session } = useLoaderData<typeof loader>() || {};
     return (
         <html lang="en">
             <head>
@@ -33,7 +32,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                             <h1 className="text-5xl font-bold">Work Journal</h1>
                             <p className="mt-2 text-lg text-gray-500">A simple work journal app to help you keep track of your work and learning.</p>
                         </div>
-                        {session.isAdmin ? (
+                        {session?.isAdmin ? (
                             <Form method="post">
                                 <button>Logout</button>
                             </Form>
