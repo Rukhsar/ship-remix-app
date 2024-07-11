@@ -1,11 +1,25 @@
-import { Links, Link, Meta, Outlet, Scripts, ScrollRestoration, Form, redirect, useLoaderData } from "@remix-run/react";
+import {
+    Links,
+    Link,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+    Form,
+    redirect,
+    useLoaderData,
+} from "@remix-run/react";
 import "./tailwind.css";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { destroySession, getSession } from "./session";
 
 export async function action({ request }: ActionFunctionArgs) {
     const session = await getSession(request.headers.get("cookie"));
-    return redirect("/", { headers: { "Set-Cookie": await destroySession(session) } });
+    return redirect("/", {
+        headers: {
+            "Set-Cookie": await destroySession(session),
+        },
+    });
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -30,7 +44,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className="text-5xl font-bold">Work Journal</h1>
-                            <p className="mt-2 text-lg text-gray-500">A simple work journal app to help you keep track of your work and learning.</p>
+                            <p className="mt-2 text-lg text-gray-500">
+                                A simple work journal app to help you keep track of your work and
+                                learning.
+                            </p>
                         </div>
                         {session?.isAdmin ? (
                             <Form method="post">
@@ -52,3 +69,5 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
     return <Outlet />;
 }
+
+// Do we need to add thr ErrorBoundary?

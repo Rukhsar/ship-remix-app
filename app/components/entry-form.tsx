@@ -2,7 +2,11 @@ import { useFetcher } from "@remix-run/react";
 import { useRef, useEffect } from "react";
 import { format } from "date-fns";
 
-export default function EntryForm({ entry }: { entry?: { text: string; date: string; category: string } }) {
+export default function EntryForm({
+    entry,
+}: {
+    entry?: { text: string; date: string; category: string };
+}) {
     const fetcher = useFetcher();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     console.log(entry);
@@ -30,9 +34,16 @@ export default function EntryForm({ entry }: { entry?: { text: string; date: str
                         {[
                             { label: "Work", value: "work" },
                             { label: "Learning", value: "learning" },
-                            { label: "Interested Thing", value: "interested-thing" },
+                            {
+                                label: "Interested Thing",
+                                value: "interested-thing",
+                            },
                         ].map((option) => (
-                            <label key={option.value} className="inline-block" htmlFor={option.value}>
+                            <label
+                                key={option.value}
+                                className="inline-block"
+                                htmlFor={option.value}
+                            >
                                 <input
                                     type="radio"
                                     name="category"
@@ -58,7 +69,10 @@ export default function EntryForm({ entry }: { entry?: { text: string; date: str
                         />
                     </div>
                     <div className="mt-2 text-right">
-                        <button type="submit" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                        <button
+                            type="submit"
+                            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                        >
                             {fetcher.state !== "idle" ? "Saving..." : "Save"}
                         </button>
                     </div>

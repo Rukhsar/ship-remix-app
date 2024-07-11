@@ -35,14 +35,22 @@ export default function Login() {
                     <p className="mt-4 text-2xl font-bold">Login</p>
                     <div className="">
                         <Form method="post" className="mt-4">
-                            <input type="email" name="email" placeholder="Email" className="mt-2 w-full rounded border border-gray-300 p-2 text-gray-700" />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                className="mt-2 w-full rounded border border-gray-300 p-2 text-gray-700"
+                            />
                             <input
                                 type="password"
                                 name="password"
                                 placeholder="Password"
                                 className="mt-2 w-full rounded border border-gray-300 p-2 text-gray-700"
                             />
-                            <button type="submit" className="mt-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                            <button
+                                type="submit"
+                                className="mt-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                            >
                                 Login
                             </button>
                         </Form>

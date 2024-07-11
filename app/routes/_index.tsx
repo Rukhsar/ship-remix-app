@@ -71,7 +71,9 @@ export default function Index() {
             dateString,
             work: entriesByWeek[dateString].filter((entry) => entry.category === "work"),
             learning: entriesByWeek[dateString].filter((entry) => entry.category === "learning"),
-            interestedThings: entriesByWeek[dateString].filter((entry) => entry.category === "interested-thing"),
+            interestedThings: entriesByWeek[dateString].filter(
+                (entry) => entry.category === "interested-thing",
+            ),
         }));
     return (
         <div className="">
@@ -82,14 +84,20 @@ export default function Index() {
             )}
             {weeks.map((week) => (
                 <div key={week.dateString} className="mt-6">
-                    <p className="font-bold">Week of {format(parseISO(week.dateString), "MMM dd")}</p>
+                    <p className="font-bold">
+                        Week of {format(parseISO(week.dateString), "MMM dd")}
+                    </p>
                     <div className="mt-3 space-y-4">
                         {week.work.length > 0 && (
                             <div>
                                 <p>Work</p>
                                 <ul className="ml-8 list-disc">
                                     {week.work.map((entry) => (
-                                        <EntryListItem key={entry.id} entry={entry} canEdit={session.isAdmin} />
+                                        <EntryListItem
+                                            key={entry.id}
+                                            entry={entry}
+                                            canEdit={session.isAdmin}
+                                        />
                                     ))}
                                 </ul>
                             </div>
@@ -99,7 +107,11 @@ export default function Index() {
                                 <p>Learning</p>
                                 <ul className="ml-8 list-disc">
                                     {week.learning.map((entry) => (
-                                        <EntryListItem key={entry.id} entry={entry} canEdit={session.isAdmin} />
+                                        <EntryListItem
+                                            key={entry.id}
+                                            entry={entry}
+                                            canEdit={session.isAdmin}
+                                        />
                                     ))}
                                 </ul>
                             </div>
@@ -109,7 +121,11 @@ export default function Index() {
                                 <p>Interested Things</p>
                                 <ul className="ml-8 list-disc">
                                     {week.interestedThings.map((entry) => (
-                                        <EntryListItem key={entry.id} entry={entry} canEdit={session.isAdmin} />
+                                        <EntryListItem
+                                            key={entry.id}
+                                            entry={entry}
+                                            canEdit={session.isAdmin}
+                                        />
                                     ))}
                                 </ul>
                             </div>
@@ -121,12 +137,21 @@ export default function Index() {
     );
 }
 
-function EntryListItem({ entry, canEdit }: { entry: Awaited<ReturnType<typeof loader>>["entries"][number]; canEdit: boolean }) {
+function EntryListItem({
+    entry,
+    canEdit,
+}: {
+    entry: Awaited<ReturnType<typeof loader>>["entries"][number];
+    canEdit: boolean;
+}) {
     return (
         <li key={entry.id} className="group">
             {entry.text}
             {canEdit && (
-                <Link to={`/entries/${entry.id}/edit`} className="ml-2 cursor-pointer text-blue-500 opacity-0 group-hover:opacity-100">
+                <Link
+                    to={`/entries/${entry.id}/edit`}
+                    className="ml-2 cursor-pointer text-blue-500 opacity-0 group-hover:opacity-100"
+                >
                     Edit
                 </Link>
             )}
