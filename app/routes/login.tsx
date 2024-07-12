@@ -15,7 +15,7 @@ export async function action({ request }: ActionFunctionArgs) {
             },
         });
     } else {
-        return null;
+        throw new Response("Invalid credentials", { status: 401, statusText: "Bad credentials" });
     }
 }
 
